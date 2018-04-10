@@ -6,12 +6,12 @@ public class HttpResponse {
   
   HttpRequest req;
   String response;
-  String root = "/home/philip/Desktop/cps706/sample";
+  String root = "/home/philip/Desktop/cps706/sample/";
   
   public HttpResponse(HttpRequest request){
     req = request;
-    File f = new File(root + req.filename);
-    
+    //File f = new File(root + req.filename);
+    File f = new File(root + "index.html");
     try {
      
       FileInputStream fis = new FileInputStream(f);
