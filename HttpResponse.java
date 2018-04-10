@@ -6,7 +6,7 @@ public class HttpResponse {
   
   HttpRequest req;
   String response;
-  String root = "/home/philip/Desktop/cps706proj-client";
+  String root = "/home/philip/Desktop/cps706/sample";
   
   public HttpResponse(HttpRequest request){
     req = request;
