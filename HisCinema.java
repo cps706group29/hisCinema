@@ -8,9 +8,8 @@ public class HisCinema {
   ServerSocket serverSocket;
 
   public static void main(String[] args) throws Exception{
-        // Prints "Hello, World" to the terminal window.
-        new WebServer().runServer();
-    }
+    new HisCinema().runServer();
+  }
 
   public void runServer() throws Exception{
     //Create a welcoming socket at our specific port
