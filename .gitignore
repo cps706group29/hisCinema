@@ -2,3 +2,5 @@ ConnectionHandler.class
 HttpRequest.class
 HttpResponse.class
 WebServer.class
+Test.java
+Test.class

@@ -23,14 +23,20 @@ public class ConnectionHandler extends Thread{
     try{
       String reqS = "";
 
+      // Incoming data detected, build the request char by char
       while(br.ready() || reqS.length() == 0){
         reqS += (char) br.read();
       }
 
+      // Request has been completed, print out
+      System.out.println("Incoming Data....");
+      System.out.println(reqS);
+
+      // If the request is an HTTP request....
       if(reqS.contains("HTTP")){
-        System.out.println("------------- INCOMING REQUEST -------------");
+        System.out.println("------------- HTTP REQUEST -------------");
         System.out.println(reqS);
-        System.out.println("--------------------------------------------");
+        System.out.println("----------------------------------------");
         HttpRequest req = new HttpRequest(reqS);
         HttpResponse res = new HttpResponse(req);
         pw.write(res.response.toCharArray());

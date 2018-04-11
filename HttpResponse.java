@@ -6,10 +6,11 @@ public class HttpResponse {
 
   HttpRequest req;
   String response;
-  String root = "/home/philip/Desktop/cps706/sample";
+  String root = "/home/philip/Desktop/cps706/hisCinema-NEW";
   File f;
   public HttpResponse(HttpRequest request){
     req = request;
+    System.out.println("EQUALS? " + req.filename.equals("/"));
     if(req.filename.equals("/")){
       f = new File(root + "/index.html");
     }else{
@@ -30,6 +31,7 @@ public class HttpResponse {
       String responseHeader = "";
     }catch(FileNotFoundException e){
       System.out.println("COULDNT FIND FILE: " + req.filename);
+      System.out.println("    (is your root variable set correctly?)");
       try{
         File file404 = new File(root + "/404.html");
         FileInputStream file404is = new FileInputStream(file404);
