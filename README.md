@@ -8,7 +8,7 @@ String root = "<enter your directory path to folder here"
 ```
 **Do NOT** include a `/` at the end of the path.  
 Make sure the directory is *absolute* (i.e. starting from the root directory of the filesystem).
-Example: `String root = "/home/User/Desktop/sample"`
+Example: `String root = "/home/User/Desktop/sample"`  
 Don't use *relative* paths (e.g. `./`, `../`, etc)
 
 ## To run
