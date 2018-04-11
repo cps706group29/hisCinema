@@ -5,9 +5,18 @@ import java.io.FileNotFoundException;
 public class HttpResponse {
 
   HttpRequest req;
-  String response;
-  String root = "/home/philip/Desktop/cps706/hisCinema-NEW";
+  String response = "";
+  String responseHeader = "";
+  String responseBody = "";
+  
+  String root = "C:/Users/J E D/Documents/Ryerson/8th semester/CPS 706 - Networks/Assignment/hisCinema-NEW";
   File f;
+  
+  final int OK = 200;
+  final int NOT_FOUND = 404;
+  final int ERROR = 500
+  
+  
   public HttpResponse(HttpRequest request){
     req = request;
     System.out.println("EQUALS? " + req.filename.equals("/"));
@@ -18,34 +27,37 @@ public class HttpResponse {
     }
     try {
       FileInputStream fis = new FileInputStream(f);
-      response += "HTTP/1.1 200 \r\n";
-      response += "Server: Our Java Server/1.0 \r\n";
-      response += "Connection: close \r\n";
-      response += "Content-Length: " + f.length() + "\r\n";
-      response += "\r\n";
+      
+      responseHeader = createResponseHeader(OK, f.length());
+      
       int s;
       while ((s = fis.read()) != -1 ) {
-        response += (char) s;
+        responseBody += (char) s;
       }
+
       fis.close();
-      String responseHeader = "";
+     
+      response = responseHeader + responseBody;
+      
     }catch(FileNotFoundException e){
       System.out.println("COULDNT FIND FILE: " + req.filename);
       System.out.println("    (is your root variable set correctly?)");
+      
       try{
         File file404 = new File(root + "/404.html");
         FileInputStream file404is = new FileInputStream(file404);
-        response += "HTTP/1.1 200 \r\n";
-        response += "Server: Our Java Server/1.0 \r\n";
-        response += "Connection: close \r\n";
-        response += "Content-Length: " + file404.length() + "\r\n";
-        response += "\r\n";
+        
+        responseHeader = createResponseHeader(NOT_FOUND, file404.length());
+        
         int s;
         while ((s = file404is.read()) != -1 ) {
-          response += (char) s;
+          responseBody += (char) s;
         }
+        
         file404is.close();
-        String responseHeader = "";
+        
+        response = responseHeader + responseBody;
+
       }catch(FileNotFoundException e1){
         //Ignore
       }catch(Exception e2){
@@ -56,23 +68,32 @@ public class HttpResponse {
       try{
         File file500 = new File(root + "/500.html");
         FileInputStream file500is = new FileInputStream(file500);
-        response += "HTTP/1.1 500 \r\n";
-        response += "Server: Our Java Server/1.0 \r\n";
-        response += "Connection: close \r\n";
-        response += "Content-Length: " + file500.length() + "\r\n";
-        response += "\r\n";
+        
+        responseHeader = createResponseHeader(ERROR, file500.length());
+
         int s;
         while ((s = file500is.read()) != -1 ) {
-          response += (char) s;
+          responseBody += (char) s;
         }
         file500is.close();
-        String responseHeader = "";
+
+        response = responseHeader + responseBody;
       }catch(FileNotFoundException e1){
         //Ignore
       }catch(Exception e2){
         //Ignore
       }
     }
+  }
+  
+  private String createResponseHeader(int statusCode, long fileLength){
+    String header = "";
+    header += "HTTP/1.1 " + statusCode + " \r\n";
+    header += "Server: Our Java Server/1.0 \r\n";
+    header += "Connection: close \r\n";
+    header += "Content-Length: " + fileLength + "\r\n";
+    header += "\r\n";
+    return header;
   }
 
 }
