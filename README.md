@@ -1,4 +1,4 @@
-# sample
+# hisCinema Web Server
 Sample web server for handling HTTP Requests
 
 ## To set-up
