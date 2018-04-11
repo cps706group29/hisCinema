@@ -14,8 +14,7 @@ public class HttpResponse {
   
   final int OK = 200;
   final int NOT_FOUND = 404;
-  final int ERROR = 500
-  
+  final int ERROR = 500;
   
   public HttpResponse(HttpRequest request){
     req = request;
