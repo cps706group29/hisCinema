@@ -45,9 +45,6 @@ public class ConnectionHandler extends Thread{
         s.close();
       }
 
-
-
-
     }catch(Exception e){
       e.printStackTrace();
     }
