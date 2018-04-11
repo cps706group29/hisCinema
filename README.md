@@ -17,6 +17,6 @@ Don't use *relative* paths (e.g. `./`, `../`, etc)
 ## To run
 Compile in the terminal and run
 ```
-javac WebServer.java
-java WebServer
+javac HisCinema.java
+java HisCinema
 ```
