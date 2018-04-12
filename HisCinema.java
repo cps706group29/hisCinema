@@ -5,7 +5,6 @@ import java.util.regex.*;
 
 public class HisCinema {
   public static int HIS_CINEMA_PORT; // Default 40280
-
   ServerSocket serverSocket;
 
   public static void main(String[] args) throws Exception{

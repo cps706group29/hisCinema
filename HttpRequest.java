@@ -6,7 +6,6 @@ public class HttpRequest {
   public HttpRequest(String request){
     String lines[] = request.split("\n");
     filename = lines[0].split(" ")[1];
-    
   }
 
 }

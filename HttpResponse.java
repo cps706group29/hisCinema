@@ -3,6 +3,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 public class HttpResponse {
+  public static final int OK = 200;
+  public static final int NOT_FOUND = 404;
+  public static final int ERROR = 500;
   public static String root = System.getProperty("user.dir");
 
   HttpRequest req;
@@ -11,10 +14,6 @@ public class HttpResponse {
   String responseBody = "";
 
   File f;
-
-  final int OK = 200;
-  final int NOT_FOUND = 404;
-  final int ERROR = 500;
 
   public HttpResponse(HttpRequest request){
     req = request;
@@ -77,7 +76,7 @@ public class HttpResponse {
   private String createResponseHeader(int statusCode, long fileLength){
     String header = "";
     header += "HTTP/1.1 " + statusCode + " \r\n";
-    header += "Server: Jed, Ron, and Phil Web Server/1.0 \r\n";
+    header += "Server: Jed, Ron, and Phil HisCinema Web Server/1.0 \r\n";
     header += "Connection: close \r\n";
     header += "Content-Length: " + fileLength + "\r\n";
     header += "\r\n";
